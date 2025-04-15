@@ -31,7 +31,8 @@ export const authMiddleware = async (req: Request, res: Response, next: NextFunc
 
     // Verify token
     const token = authHeader.split(' ')[1];
-    const jwtSecret = process.env.JWT_SECRET || 'your_jwt_secret_key_here';
+    const jwtSecret = process.env.JWT_SECRET || 'dev_jwt_secret';
+    // NOTE: In production, always use environment variables for secrets
 
     try {
       const decoded = jwt.verify(token, jwtSecret) as DecodedToken;

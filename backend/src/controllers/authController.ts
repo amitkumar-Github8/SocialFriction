@@ -210,7 +210,8 @@ export class AuthController {
    * Generate JWT token
    */
   private generateToken(userId: string): string {
-    const jwtSecret = process.env.JWT_SECRET || 'your_jwt_secret_key_here';
+    const jwtSecret = process.env.JWT_SECRET || 'dev_jwt_secret';
+    // NOTE: In production, always use environment variables for secrets
     return jwt.sign({ id: userId }, jwtSecret, { expiresIn: '30d' });
   }
 }

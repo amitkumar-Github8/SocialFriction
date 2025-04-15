@@ -70,10 +70,27 @@ Social Friction provides a comprehensive dashboard that integrates all features 
 
 ### Running the Application
 
-1. Set up MongoDB:
+1. Set up environment variables:
+   - Copy the `.env.example` file in the backend directory to a new file named `.env`
+   - Update the `.env` file with your own values:
+     ```
+     # MongoDB Connection String
+     MONGODB_URI=mongodb://localhost:27017/social-friction
+
+     # JWT Secret Key (use a strong random string in production)
+     JWT_SECRET=your_jwt_secret_key_here
+
+     # Server Port
+     PORT=3000
+
+     # Node Environment
+     NODE_ENV=development
+     ```
+
+2. Set up MongoDB:
    - Install MongoDB locally or use MongoDB Atlas
    - Create a database named `social-friction`
-   - Update the `.env` file in the backend directory with your MongoDB connection string
+   - Update the `MONGODB_URI` in your `.env` file with your MongoDB connection string
 
 2. Start the backend server:
 
