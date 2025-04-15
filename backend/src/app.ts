@@ -24,9 +24,18 @@ const PORT = process.env.PORT || 3000;
 connectDB();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:3001', 'http://localhost:3000'],
+  credentials: true
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// Log all requests
+app.use((req, _res, next) => {
+  console.log(`${req.method} ${req.path}`);
+  next();
+});
 
 // API Routes
 app.use('/api/auth', authRoutes);
@@ -41,12 +50,12 @@ app.use('/api/suggestions', suggestionsRoutes);
 app.use('/api/rewards', rewardsRoutes);
 
 // Health check route
-app.get('/api/health', (req, res) => {
+app.get('/api/health', (_req, res) => {
   res.status(200).json({ status: 'ok', message: 'Server is running' });
 });
 
 // Error handling middleware
-app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
+app.use((err: any, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
   console.error(err.stack);
   res.status(500).json({
     error: true,

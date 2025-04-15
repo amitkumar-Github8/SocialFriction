@@ -1,0 +1,15 @@
+{
+  "name": "socialfriction",
+  "version": "1.0.0",
+  "description": "Social Friction is a web application designed to help users manage their online activities mindfully. The application incorporates various features aimed at promoting focus, self-awareness, and healthy digital habits.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^6.15.0"
+  }
+}

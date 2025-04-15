@@ -60,7 +60,7 @@ const FocusMode: React.FC = () => {
       await api.post('/focus-mode/stop');
       // Earn focus credits for completing a session
       await api.post('/rewards/earn', { amount: 10, reason: 'Completed focus session' });
-    } catch (err: any) {
+    } catch (err) {
       setError('Failed to complete focus session');
       console.error(err);
     }

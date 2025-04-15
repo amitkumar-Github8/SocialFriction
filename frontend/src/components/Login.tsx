@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import '../styles/Auth.css';
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -23,7 +24,7 @@ const Login: React.FC = () => {
       setError('');
       setLoading(true);
       await login(email, password);
-      history.push('/');
+      history.push('/dashboard');
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to login');
     } finally {
@@ -32,35 +33,39 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="login-container">
+    <div className="auth-container">
       <h2>Login to Social Friction</h2>
-      {error && <div className="error-message">{error}</div>}
-      <form onSubmit={handleSubmit}>
+      {error && <div className="error-container">{error}</div>}
+      <form className="auth-form" onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="email">Email</label>
           <input
+            className="form-control"
             type="email"
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter your email"
             required
           />
         </div>
         <div className="form-group">
           <label htmlFor="password">Password</label>
           <input
+            className="form-control"
             type="password"
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            placeholder="Enter your password"
             required
           />
         </div>
-        <button type="submit" disabled={loading}>
+        <button className="auth-button" type="submit" disabled={loading}>
           {loading ? 'Logging in...' : 'Login'}
         </button>
       </form>
-      <p>
+      <p className="auth-link">
         Don't have an account? <Link to="/register">Register</Link>
       </p>
     </div>
